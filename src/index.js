@@ -34,12 +34,18 @@ app.post('/', async (req, res) => {
 });
 
 app.put('/:id', async (req, res) => {
-  const film = await Film.findByIdAndUpdate(req.params.id, {
-    title: req.body.title,
-    description: req.body.description,
-    image_url: req.body.description,
-    trailer_url: req.body.trailer_url,
-  });
+  const film = await Film.findByIdAndUpdate(
+    req.params.id,
+    {
+      title: req.body.title,
+      description: req.body.description,
+      image_url: req.body.description,
+      trailer_url: req.body.trailer_url,
+    },
+    {
+      new: true,
+    },
+  );
   return res.send(film);
 });
 
